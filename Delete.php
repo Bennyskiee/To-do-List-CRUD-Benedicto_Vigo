@@ -1,34 +1,23 @@
 
-o
-	<div class="container">
-    <br/>
-		<h2>Person's Log</h2>
-        <table class="table">
-                <thead class="thead-dark">
-                    <tr> 
-                    <th scope="col">id</th>
-                    <th scope="col">task_name</th>
-                    <th scope="col">task_description</th>
-                    <th scope="col">task_due_date</th>
-                    <th scope="col">task_status</th>
-                    </tr>
-                </thead>
-		
-			<div class="well">
-                <tbody>
-                <?php foreach($persons as $person) : ?>
-                    <tr>
-                    <th scope="row"><?php echo $person['Person_ID'];?></th>
-                    <td><?php echo $person['task_name'];?></td>
-                    <td><?php echo $person['task_description'];?></td>
-                    <td><?php echo $person['address'];?></td>
-                    <td><?php echo $person['logdt'];?></td>
-                    </tr>
-                <?php endforeach; ?>   
-                </tbody>
-            </div>
-        </table>
-        <br/>
+<?php 
 
-            <button type="button" class="btn btn-dark btn-sm" onclick="document.location='guestbook-login.php'">Logout</button>
-</div>
+$conn = mysqli_connect('localhost', 'root', '', 'tasks');
+if (!$conn) {
+	die("Connection failed: " . mysqli_connect_error());
+ }
+ 
+ if(isset($_POST['submit'])) {
+	 $delete_task_id = $_POST['delete_task_id'];
+ 
+	 $sql = "DELETE FROM `tasks` WHERE `id` = '$delete_task_id'";
+	 if (mysqli_query($conn, $sql)) {
+		 echo "<h2>Task deleted successfully<h2/>";
+	 } else {
+		 echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+	 }
+	 mysqli_close($conn);
+ }
+ ?>
+ 
+	 <button type="button" onclick="window.location.href='index.php'">Go back to the home page</button>
+ 
