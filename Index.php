@@ -14,8 +14,7 @@ if (!$conn) {
  
 	 if ($task_status != 'incomplete' && $task_status != 'in progress' && $task_status != 'complete') {
 		 echo 'Please enter a valid task status: incomplete, in progress, or complete';
-		 exit;
-	 }
+		 exit; }
  
 	 $sql = "INSERT INTO `tasks` (`task_name`, `task_description`, `task_due_date`, `task_status`) 
 	 VALUES ('$task_name', '$task_description', '$task_due_date', '$task_status')";
@@ -32,7 +31,7 @@ if (!$conn) {
  <div class = "input">
  <form action="" method="post">
 	 <label for="task_name">Task Name:</label><br>
-	 <input type="text" id="task_name" name="task_name"><br><br>
+	 <input type="text" id="task_name" name="task_name"><br>
 	 
 	 <label for="task_description">Task Description:</label><br>
 	 <input type="text" id="task_description" name="task_description"><br><br>
@@ -48,7 +47,7 @@ if (!$conn) {
 	 </select>
 	 
 	 <input type="submit" name="submit" value="Submit">
- </form><br><br><br><br>
+ </form>
 </div>
  
  
@@ -77,14 +76,14 @@ if (!$conn) {
 	 }
  ?>
  
- <table >
+ <table>
 	 <thead>
-		 <tr>
-			 <th>Task ID</th>
-			 <th>Task Name</th>
-			 <th>Task Description</th>
-			 <th>Task Due Date</th>
-			 <th>Task Status</th>
+		 <>
+		  <th>Task ID</th>
+		  <th>Task Name</th>
+		  <th>Task Description</th>
+		  <th>Task Due Date</th>
+		  <th>Task Status</th> 
 		 </tr>
 	 </thead>
 	 <tbody>
@@ -123,6 +122,7 @@ if (!$conn) {
 	 <?php
 	 while($row = mysqli_fetch_assoc($result)) {
 	 ?>
+	 <a class="border">
 		 <tr>
 			 <td><?php echo $row['id']; ?></td>
 			 <td><?php echo $row['task_name']; ?></td>
@@ -130,7 +130,7 @@ if (!$conn) {
 			 <td><?php echo $row['task_due_date']; ?></td>
 			 <td><?php echo $row['task_status']; ?></td>
 		 </tr>
- 
+	 </a>
 	 <?php
 	 }
 	 ?>
@@ -193,24 +193,22 @@ if (!$conn) {
 	margin-top: 30px;
  }
 	 table {
-		 border-collapse: collapse;
-		 width: 60%;
-		 overflow-x: auto;
-		 float: left;
-		 margin-bottom: 100px;
-		 margin-right: 40px;
-		 
+		border: 1px;
+		width: 50%;
+		float: left;
+		margin-bottom: 10px;
+		margin-right: 40px;
+			 
 	 }
+ table {
+		border: 1px solid black;
+	}
 	
-	 tr:nth-child(even){background-color: #f2f2f2}
-	 th {
-		 background-color: gray;
-		 color: black;
-	 }
+	
 	 .right-forms {
 		 
 	 width: 300px;
-	 margin-left: 950px;
+	 margin-left: 790px;
 	 margin-bottom: 500px;
 		 
 	 }
